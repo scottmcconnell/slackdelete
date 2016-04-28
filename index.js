@@ -18,9 +18,9 @@ app.get('/', function(request, response) {
 
 // Watch for hits to /public
 app.get('/public', function(request, response) {
-	response.render('pages/public');
 	console.log('request: ', request);
 	console.log('response: ', response);
+	response.render('pages/public');
 });
 
 
