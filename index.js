@@ -24,35 +24,29 @@ app.listen(app.get('port'), function() {
 
 // Slack API addition
 var Slack = require('slack-node');
-apiToken = 'xoxp-2547967933-4874820077-38376684243-7e19bdbd9a';
+apiToken = 'none';
 
 slack = new Slack(apiToken);
 
 var imageID;
 
-slack.api('files.list', function(err, response) {
+// slack.api('files.list', function(err, response) {
 
-	response.files.forEach(function(file) {
-		console.log('file: ', file);
-		if (file.created === 1461808958) {
-			imageID = file.id;
-		}
-	});
+// 	response.files.forEach(function(file) {
+// 		console.log('file: ', file);
+// 		if (file.created === 1461808958) {
+// 			imageID = file.id;
+// 		}
+// 	});
 
-	if (typeof imageID !== 'undefined' && imageID.length > 0) {
-		slack.api('files.delete', {
-			file: imageID
-		}, function(err, response) {
-			console.log('file.delte: ', response);
-		});
-	}
-
-	// response.members.forEach(function(member) {
-	// 	if (member.is_admin === true) {
-	// 		console.log('Admin name: ', member.real_name);
-	// 	}
-	// })
-})
+// 	if (typeof imageID !== 'undefined' && imageID.length > 0) {
+// 		slack.api('files.delete', {
+// 			file: imageID
+// 		}, function(err, response) {
+// 			console.log('file.delte: ', response);
+// 		});
+// 	}
+// })
 
 // slack.api('chat.postMessage', {
 // 	text: 'hello from Scott McConnell (bot)',
