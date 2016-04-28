@@ -18,8 +18,9 @@ app.get('/', function(request, response) {
 
 // Watch for hits to /public
 app.get('/public', function(request, response) {
-  console.log('request: ', request);
-  console.log('response: ', response);
+	response.render('pages/public');
+	console.log('request: ', request);
+	console.log('response: ', response);
 });
 
 
@@ -29,12 +30,12 @@ app.listen(app.get('port'), function() {
 
 
 // Slack API addition
-var Slack = require('slack-node');
-apiToken = 'none';
+// var Slack = require('slack-node');
+// apiToken = 'none';
 
-slack = new Slack(apiToken);
+// slack = new Slack(apiToken);
 
-var imageID;
+// var imageID;
 
 // slack.api('files.list', function(err, response) {
 
