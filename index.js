@@ -20,8 +20,14 @@ console.log('y u no work');
 
 // Watch for hits to /public
 app.get('/public', function(request, response) {
-	console.log('request: ', request);
-	console.log('response: ', response);
+	function getQueryStringValue (key) {  
+	  return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+	}  
+
+	// Would write the value of the QueryString-variable called name to the console  
+	console.log(getQueryStringValue("code")); 
+
+
 	response.render('pages/public');
 });
 
