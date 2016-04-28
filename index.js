@@ -4,6 +4,15 @@ var express = require('express');
 var app = express();
 
 var http = require('http');
+var fs = require('fs');
+
+fs.readFile('/private/slackcredentials.json', 'utf8', function(err, data) {
+	if (err) {
+		return console.log(err);
+	}
+
+	console.log(data);
+})
 
 app.set('port', (process.env.PORT || 5000));
 
