@@ -6,8 +6,7 @@ npm-debug.log
 *.env
 *.dev
 .DS_Store
-private/*
-private/slackcredentials.json
+
 
 # Docker
 Dockerfile
