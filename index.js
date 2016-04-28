@@ -1,4 +1,4 @@
-require('node-monkey').start({host: "127.0.0.1", port:"50500"});
+// require('node-monkey').start({host: "127.0.0.1", port:"50500"});
 
 var express = require('express');
 var app = express();
