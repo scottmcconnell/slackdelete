@@ -1,27 +1,29 @@
 {
-	"name": "node-js-getting-started",
-	"version": "0.2.5",
-	"description": "A sample Node.js app using Express 4",
-	"engines": {
-		"node": "5.9.1"
-	},
-	"main": "index.js",
-	"scripts": {
-		"start": "node index.js"
-	},
-	"dependencies": {
-		"ejs": "2.4.1",
-		"express": "4.13.3",
-		"pg": "4.x"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/scottmcconnell/slackdelete.git"
-	},
-	"keywords": [
-		"node",
-		"heroku",
-		"express"
-	],
-	"license": "MIT"
+  "name": "node-js-getting-started",
+  "version": "0.2.5",
+  "description": "A sample Node.js app using Express 4",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ejs": "2.4.1",
+    "express": "4.13.3",
+    "node-monkey": "^0.2.16",
+    "pg": "4.x",
+    "slack-node": "^0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottmcconnell/slackdelete.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }
