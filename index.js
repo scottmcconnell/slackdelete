@@ -1,4 +1,4 @@
-// require('node-monkey').start({host: "127.0.0.1", port:"50500"});
+require('node-monkey').start({host: "127.0.0.1", port:"50500"});
 
 var express = require('express');
 var app = express();
@@ -6,12 +6,16 @@ var app = express();
 var http = require('http');
 var fs = require('fs');
 
-fs.readFile('/private/slackcredentials.json', 'utf8', function(err, data) {
+// slack credentials variable
+var credentials;
+
+fs.readFile('./private/slackcredentials.json', 'utf8', function(err, data) {
 	if (err) {
 		return console.log(err);
 	}
 
-	console.log(data);
+	credentials = JSON.parse(data);
+	console.log(credentials);
 })
 
 app.set('port', (process.env.PORT || 5000));
@@ -28,30 +32,41 @@ app.get('/', function(request, response) {
 });
 
 
-var http_options = {
-	host: 'https://slack.com/api/oauth.access',
-	method: 'POST'
-};
 
 // Watch for hits to /public
 app.get('/public', function(request, response) {
-	console.log(request.query.code);
+	console.log('request.query.code: ', request.query.code);
 
 	var data = {
-		client_id = '2547967933.38430492401'
+		client_id: credentials.client_id,
+		client_secret: credentials.secret,
+		code: request.query.code
 	}
+
+	getOauthAccess(data);
 
 
 	response.render('pages/public');
 });
 
 
+// var http_options = {
+// 	host: 'https://slack.com',
+// 	path: '/api/oauth.access',
+// 	method: 'POST',
+// 	port: 80
+// };
 
-var getOauthAccess = http.request(http_options, function(response) {
+var getOauthAccess = http.get({
+	host: 'slack.com',
+	path: '/api/oauth.access',
+	method: 'POST',
+	port: 80
+}, function(response) {
 	response.setEncoding('utf8');
 	response.on('data', function(chunk) {
-		console.log('response: ', chunk);
-	})
+		console.log('getOauthAccess response: ', chunk);
+	});
 })
 
 
