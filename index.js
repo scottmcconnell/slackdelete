@@ -16,6 +16,8 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+console.log('y u no work');
+
 // Watch for hits to /public
 app.get('/public', function(request, response) {
 	console.log('request: ', request);
