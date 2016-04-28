@@ -3,6 +3,8 @@
 var express = require('express');
 var app = express();
 
+var http = require('http');
+
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
@@ -16,20 +18,32 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-console.log('y u no work');
+
+var http_options = {
+	host: 'https://slack.com/api/oauth.access',
+	method: 'POST'
+};
 
 // Watch for hits to /public
 app.get('/public', function(request, response) {
-	function getQueryStringValue (key) {  
-	  return unescape(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + escape(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
-	}  
+	console.log(request.query.code);
 
-	// Would write the value of the QueryString-variable called name to the console  
-	console.log(getQueryStringValue("code")); 
+	var data = {
+		client_id = '2547967933.38430492401'
+	}
 
 
 	response.render('pages/public');
 });
+
+
+
+var getOauthAccess = http.request(http_options, function(response) {
+	response.setEncoding('utf8');
+	response.on('data', function(chunk) {
+		console.log('response: ', chunk);
+	})
+})
 
 
 app.listen(app.get('port'), function() {
