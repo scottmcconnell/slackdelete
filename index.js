@@ -18,3 +18,22 @@ app.get('/', function(request, response) {
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+
+
+// Slack API addition
+var Slack = require('slack-node');
+apiToken = 'xoxp-2547967933-4874820077-38376684243-7e19bdbd9a';
+
+slack = new Slack(apiToken);
+
+slack.api('users.list', function(err, response) {
+	console.log('response: ', response);
+})
+
+// slack.api('chat.postMessage', {
+// 	text: 'hello from Scott McConnell (bot)',
+// 	channel: '#fedlyf'
+// }, function(err, response) {
+// 	console.log('response: ', response);
+// })
