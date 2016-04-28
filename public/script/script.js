@@ -1,27 +1,38 @@
 $(document).ready(function() {
 
-	var data = {
-		// client_id = '2547967933.38430492401'
+	var sendLoginRequest;
 
+	$('.fn_loginToSlack')
+		.off('click.slacklogin')
+		.on('click.slacklogin', function(e) {
+			e.preventDefault();
+			sendLoginRequest();
+		});
+
+	var data = {
+		'client_id': '2547967933.38430492401',
+		scope: 'files:read files:write:user'
 	};
 
-	// $.ajax({
-	// 	url: 'https://slack.com/api/oauth.access',
-	// 	method: 'POST',
-	// 	data: data,
-	// 	success: function(data) {
+	sendLoginRequest = function() {
+		console.log('sendLoginRequest');
+		$.ajax({
+			url: 'https://slack.com/oauth/authorize',
+			method: 'GET',
+			data: data,
+			success: function(data) {
 
-	// 		if (data && data.success) {
-				
-	// 		} else {
-				
-	// 		}
-	// 	},
-	// 	error: function() {
+				if (data) {
+					console.log('data: ', data);
+				} else {
+					console.log('no data');
+				}
+			},
+			error: function() {
+				console.error('erroring!');
+			}
 
-	// 	}
-
-	// });
-
+		});
+	}
 
 });
